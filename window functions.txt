@@ -1,0 +1,21 @@
+
+Window Functions Syntax Example
+
+ROWNUM,RANK AND DENSE RANK
+
+select student_ID,Name,Section,Maths_Marks,
+row_number() over (Partition by Section order by Maths_Marks desc ) as rownum,
+rank() over(Partition by Section order by Maths_Marks desc ) as ranking,
+dense_rank() over(Partition by Section order by Maths_Marks desc ) as dranking
+from cricket.mathmarks
+
+
+
+LAG;LEAD AND AVG
+
+
+select *,
+lag(Maths_Marks) over (Partition by  Name) as previousmarks,
+lead(Maths_Marks) over (Partition by  Name) as nextmarks,
+avg(Maths_Marks) over (Partition by Section) as avgsectionmarks
+from cricket.class
